@@ -71,7 +71,7 @@ mutation {
 
 ```base
 mutation {
-  addUser(id: "0" name: "updated name", age: 25, email: "example@gmail.com") {
+  updateUser(id: "0", name: "updated name", age: 25, email: "example@gmail.com") {
     id
     name
     age
