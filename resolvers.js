@@ -24,6 +24,17 @@ let users = [
     }
     return null;
   };
+  const updateUser = (id, updatedFields) => {
+    const userIndex = users.findIndex((user) => user.id === id);
+    
+    if (userIndex !== -1) {
+      // Update only the provided fields
+      users[userIndex] = { ...users[userIndex], ...updatedFields };
+      return users[userIndex];
+    }
   
-  module.exports = { getAllUsers, createUser, deleteUser };
+    return null;
+  };
+  
+  module.exports = { getAllUsers, createUser, deleteUser, updateUser };
   

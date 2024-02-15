@@ -1,7 +1,8 @@
-// src/schema.js
+// schema.js
 
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema, GraphQLList, GraphQLNonNull } = require('graphql');
-const { getAllUsers, createUser, deleteUser } = require('./resolvers');
+const { getAllUsers, createUser, deleteUser, updateUser } = require('./resolvers');
+
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -48,6 +49,19 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return deleteUser(args.id);
+      },
+    },
+
+    updateUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+        name: { type: GraphQLString },
+        age: { type: GraphQLInt },
+        email: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return updateUser(args.id, args);
       },
     },
   },
